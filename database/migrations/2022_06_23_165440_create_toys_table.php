@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('toys', function (Blueprint $table) {
             $table->id();
-            
+
             $table->string('title', 100);
             $table->text('description');
             $table->float('price');
-            $table->binary('image');
+            $table->text('image');
 
             $table->timestamps();
         });
