@@ -15,27 +15,35 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-      DB::statement('SET FOREIGN_KEY_CHECKS=0');
-      //no reference tables
-      DB::table('countries')->truncate();
-      DB::table('age_limits')->truncate();
-      DB::table('gender_categories')->truncate();
-      DB::table('users')->truncate();
-      DB::table('categories')->truncate();
-      //tables with references
-      DB::table('sub_categories')->truncate();
-      DB::table('brands')->truncate();
-      DB::table('toys')->truncate();
+        if(env('DB_CONNECTION') === 'mysql') {
+            $tables = DB::select('SHOW TABLES');
+            $tableProperty = 'Tables_in_'.env('DB_DATABASE');
 
-      $this->call([
-          CountrySeeder::class,
-          AgeLimitSeeder::class,
-          GenderCategorySeeder::class,
-          UserSeeder::class,
-          CategorySeeder::class,
+            foreach($tables as $table) {
+                DB::statement("ALTER TABLE ". $table->$tableProperty ." AUTO_INCREMENT = 1;"); // reset auto increment to 1
+            }
+        }
+        
+        //tables with references
+        DB::table('toys')->delete();
+        DB::table('brands')->delete();
+        DB::table('sub_categories')->delete();
+        DB::table('categories')->delete();
 
-          BrandSeeder::class,
-          ToySeeder::class
-      ]);
+        DB::table('countries')->delete();
+        DB::table('age_limits')->delete();
+        DB::table('gender_categories')->delete();
+        DB::table('users')->delete();
+
+        $this->call([
+            CountrySeeder::class,
+            AgeLimitSeeder::class,
+            GenderCategorySeeder::class,
+            UserSeeder::class,
+            CategorySeeder::class,
+
+            BrandSeeder::class,
+            ToySeeder::class
+        ]);
     }
 }

@@ -15,6 +15,13 @@ class AgeLimitSeeder extends Seeder
      */
     public function run()
     {
+        if(env('DB_CONNECTION') === 'mysql') {
+            DB::statement("ALTER TABLE age_limits AUTO_INCREMENT = 1;"); // reset auto increment to 1
+        } else if(env('DB_CONNECTION') === 'pgsql') {
+            DB::statement("ALTER SEQUENCE age_limits_id_seq RESTART WITH 1");
+        }
+        
+
         $limits = [
             [0, 3],
             [3, 6],

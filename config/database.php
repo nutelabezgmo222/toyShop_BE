@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'postgres'),
 
     /*
     |--------------------------------------------------------------------------
@@ -46,26 +46,27 @@ return [
         'mysql' => [
             'read' => [
                 'host' => [
-                    '127.0.0.1',
+                    'sql4.freesqldatabase.com',
                 ],
             ],
             'write' => [
                 'host' => [
-                    '127.0.0.1',
+                    'sql4.freesqldatabase.com',
                 ],
             ],
+            'port' => env('DB_PORT', '3306'),
             'sticky'    => true,
             'driver'    => 'mysql',
-            'database'  => 'laravel',
-            'username'  => 'root',
-            'password'  => '',
+            'database'  => 'sql4502235',
+            'username'  => 'sql4502235',
+            'password'  => 'rNUYHs9nN3',
             'charset'   => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix'    => '',
         ],
 
-        'pgsql' => [
-            'driver' => 'pgsql',
+        'postgres' => [
+            'driver' => 'postgres',
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '5432'),
