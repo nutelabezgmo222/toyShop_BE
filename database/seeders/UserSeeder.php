@@ -1,0 +1,35 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
+class UserSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $usersToCreate = 20;
+
+        for($i = 0; $i < $usersToCreate; $i++) {
+            DB::table('users')->insert([
+              'name' => Str::random(10),
+              'surname' => Str::random(10),
+              'email' => Str::random(10).'@gmail.com',
+              'password' => Hash::make('password'),
+              'phone_number' => intval('380' . rand(100000000, 999999999)),
+              'registration_date' => date("Y-m-d H:i:s"),
+              'last_log_time' => date("Y-m-d H:i:s"),
+              'is_admin' => 0
+          ]);
+        }
+    }
+}

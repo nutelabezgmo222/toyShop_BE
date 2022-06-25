@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name', 45);
             $table->string('surname', 45);
             $table->string('email', 45)->unique();
-            $table->integer('phone_number');
+            $table->bigInteger('phone_number');
             $table->string('password', 45);
             $table->date('registration_date');
             $table->dateTime('last_log_time');

@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Toy;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Contracts\Validation\Validator;
 
 class ToyApiController extends Controller
 {
@@ -20,21 +18,21 @@ class ToyApiController extends Controller
 
 
     public function _POST(Request $request) {
-      $errors = $this->validateToy($request, $validationRules);
+        $errors = $this->validateToy($request);
 
-      if($errors) {
-         return response($errors, 422);
-      }
+        if($errors) {
+          return response($errors, 422);
+        }
 
-      return Toy::create([
-          'title' => $request['title'],
-          'description' => $request['description'] || '',
-          'price' => $request['price'] || 0,
-          'image' => $request['image'] || '',
-          'Brand_id' => $request['brand_id'],
-          'Gender_id' => $request['gender_id'],
-          'AgeLimit_id' => $request['age_limit_id']
-      ]);
+        return Toy::create([
+            'title' => $request['title'],
+            'description' => $request['description'] || '',
+            'price' => $request['price'] || 0,
+            'image' => $request['image'] || '',
+            'Brand_id' => $request['brand_id'],
+            'Gender_id' => $request['gender_id'],
+            'AgeLimit_id' => $request['age_limit_id']
+        ]);
     }
 
     public function _PATCH($id, Request $request) {
