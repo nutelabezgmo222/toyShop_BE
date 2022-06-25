@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\SubCategory;
+use App\Models\GenderCategory;
+use App\Models\AgeLimit;
+use App\Models\Brand;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,4 +19,20 @@ class Toy extends Model
         'price',
         'image',
     ];
+
+    public function subCategories() {
+        return $this->belongsToMany(SubCategory::class, 'toy_subcategories', 'Toy_id', 'SubCategory_id');
+    }
+
+    public function genderCategory() {
+        return $this->belongsTo(GenderCategory::class, 'GenderCategory_id');
+    }
+
+    public function ageLimit() {
+        return $this->belongsTo(AgeLimit::class, 'AgeLimit_id');
+    }
+
+    public function brand() {
+        return $this->belongsTo(Brand::class, 'Brand_id');
+    }
 }

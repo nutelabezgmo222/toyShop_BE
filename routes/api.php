@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Post;
+use App\Models\Toy;
 
 use App\Http\Controllers\ToyApiController;
 use Illuminate\Http\Request;
@@ -21,14 +21,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/toys', [ToyApiController::class, 'index']);
+Route::get('/toys', [ToyApiController::class, '_GET']);
 
 Route::post('/toys', [ToyApiController::class, '_POST']);
 
-// Route::put('/posts/{post}', function(Post $post) {
+Route::patch('/toys/{id}', [ToyApiController::class, '_PATCH']);
 
-//     return $post->update([
-//         'title' => $bodyContent['title'],
-//         'content' => $bodyContent['content'],
-//     ]);
-// });
+Route::delete('/toys/{id}', [ToyApiController::class, '_DELETE']);
