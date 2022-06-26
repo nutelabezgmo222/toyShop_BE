@@ -15,15 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        if(env('DB_CONNECTION') === 'mysql') {
-            $tables = DB::select('SHOW TABLES');
-            $tableProperty = 'Tables_in_'.env('DB_DATABASE');
-
-            foreach($tables as $table) {
-                DB::statement("ALTER TABLE ". $table->$tableProperty ." AUTO_INCREMENT = 1;"); // reset auto increment to 1
-            }
-        }
-        
         //tables with references
         DB::table('toys')->delete();
         DB::table('brands')->delete();
@@ -34,6 +25,15 @@ class DatabaseSeeder extends Seeder
         DB::table('age_limits')->delete();
         DB::table('gender_categories')->delete();
         DB::table('users')->delete();
+
+        if(env('DB_CONNECTION') === 'mysql') {
+            $tables = DB::select('SHOW TABLES');
+            $tableProperty = 'Tables_in_'.env('DB_DATABASE');
+
+            foreach($tables as $table) {
+                DB::statement("ALTER TABLE ". $table->$tableProperty ." AUTO_INCREMENT = 1;"); // reset auto increment to 1
+            }
+        }
 
         $this->call([
             CountrySeeder::class,
