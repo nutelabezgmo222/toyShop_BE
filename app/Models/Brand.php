@@ -16,6 +16,15 @@ class Brand extends Model
         'country_id'
     ];
 
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'Country_id'
+    ];
+
     public function country() {
         return $this->belongsTo(Country::class, 'Country_id');
     }

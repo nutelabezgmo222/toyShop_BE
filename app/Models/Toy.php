@@ -18,6 +18,20 @@ class Toy extends Model
         'description',
         'price',
         'image',
+        'GenderCategory_id',
+        'AgeLimit_id',
+        'Brand_id'
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'GenderCategory_id',
+        'AgeLimit_id',
+        'Brand_id'
     ];
 
     public function subCategories() {

@@ -4,6 +4,8 @@ use App\Models\Toy;
 
 use App\Http\Controllers\ToyApiController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\SubInformationController;
+use App\Http\Controllers\CategoriesController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,3 +33,13 @@ Route::delete('/toys/{id}', [ToyApiController::class, '_DELETE']);
 Route::get('/brands', [BrandController::class, '_GET']);
 Route::post('/brands', [BrandController::class, '_POST']);
 Route::delete('/brands/{id}', [BrandController::class, '_DELETE']);
+
+Route::get('/countries', [SubInformationController::class, '_GET_countries']);
+Route::get('/genders', [SubInformationController::class, '_GET_genders']);
+Route::get('/age_limits', [SubInformationController::class, '_GET_age_limits']);
+
+Route::get('/categories', [CategoriesController::class, '_GET']);
+Route::post('/category', [CategoriesController::class, '_POST_category']);
+Route::post('/subcategory', [CategoriesController::class, '_POST_subcategory']);
+Route::delete('/category/{id}', [CategoriesController::class, '_DELETE_category']);
+Route::delete('/subcategory/{id}', [CategoriesController::class, '_DELETE_subcategory']);
