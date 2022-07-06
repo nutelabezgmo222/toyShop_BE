@@ -5,14 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Toy;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
+
 
 class ToyApiController extends Controller
 {
-    public function _GET() {
-        $toys = Toy::with(['genderCategory', 'brand.country', 'ageLimit', 'subCategories'])->get();
+    public function _GET(Request $request) {
+        $toys = Toy::with(['genderCategory', 'brand.country', 'ageLimit', 'subCategories']);
+
+        if ($request->has('subCategoryId')) {
+            $toys->whereHas('subCategories', function($q) use ($request) {
+                $q->where('id', '=' , $request['subCategoryId']);
+            });
+        }
 
         return [
-            'list' => $toys
+            'list' => $toys->get()
         ];
     }
 
