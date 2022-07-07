@@ -18,8 +18,18 @@ class SubInformationController extends Controller
         ];
     }
 
-    public function _GET_age_limits() {
+    public function _GET_age_limits(Request $request) {
         $items = AgeLimit::all();
+
+        if ($request->has('subCategoryId')) {
+            $items = AgeLimit::with('toys.subCategories');
+
+            $items->whereHas('toys.subCategories', function($q) use ($request) {
+                $q->where('id', '=' , $request['subCategoryId']);
+            });
+
+            $items->get();
+        }
 
         return [
             'list' => $items
