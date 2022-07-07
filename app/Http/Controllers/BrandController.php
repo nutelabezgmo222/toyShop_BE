@@ -8,11 +8,19 @@ use App\Models\Brand;
 
 class BrandController extends Controller
 {
-    public function _GET() {
-        $brands = Brand::with('country')->get();
+    public function _GET(Request $request) {
+        $brands = Brand::with('country');
+
+        if ($request->has('subCategoryId')) {
+            $brands = Brand::with(['country', 'toys.subCategories']);
+
+            $brands->whereHas('toys.subCategories', function($q) use ($request) {
+                $q->where('id', '=' , $request['subCategoryId']);
+            });
+        }
 
         return [
-            'list' => $brands
+            'list' => $brands->get()
         ];
     }
 
