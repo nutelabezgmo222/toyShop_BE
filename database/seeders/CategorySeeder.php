@@ -21,22 +21,29 @@ class CategorySeeder extends Seeder
             'Dolls' => ['doll accessories', 'dolls', 'doll mannequins'],
             'First toys' => ['Bath toys', 'sandbox toys', 'cubes']
         ];
-        
+
+        $id = 0;
+        $subId = 0;
+
         foreach($categories as $category => $subCategories) {
             DB::table('categories')->insert([
-                'id' => NULL,
+                'id' => $id,
                 'title' => $category
             ]);
 
             $lastInsertedId = DB::getPdo()->lastInsertId();
-
+            
             foreach($subCategories as $subCategory) {
                 DB::table('sub_categories')->insert([
-                    'id' => NULL,
+                    'id' => $subId,
                     'title' => $subCategory,
                     'Category_id' => $lastInsertedId
                 ]);
+
+                $subId = $subId + 1;
             }
+
+            $id = $id + 1;
         }
         
     }

@@ -18,18 +18,21 @@ class UserSeeder extends Seeder
     public function run()
     {
         $usersToCreate = 20;
+        $id = 1;
 
         for($i = 0; $i < $usersToCreate; $i++) {
             DB::table('users')->insert([
-              'name' => Str::random(10),
-              'surname' => Str::random(10),
-              'email' => Str::random(10).'@gmail.com',
-              'password' => Hash::make('password'),
-              'phone_number' => intval('380' . rand(100000000, 999999999)),
-              'registration_date' => date("Y-m-d H:i:s"),
-              'last_log_time' => date("Y-m-d H:i:s"),
-              'is_admin' => 0
-          ]);
+                'name' => Str::random(10),
+                'surname' => Str::random(10),
+                'email' => Str::random(10).'@gmail.com',
+                'password' => Hash::make('password'),
+                'phone_number' => intval('380' . rand(100000000, 999999999)),
+                'registration_date' => date("Y-m-d H:i:s"),
+                'last_log_time' => date("Y-m-d H:i:s"),
+                'is_admin' => 0
+            ]);
+            
+            $id = $id + 1;
         }
     }
 }

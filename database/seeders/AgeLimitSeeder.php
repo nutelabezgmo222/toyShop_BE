@@ -15,13 +15,7 @@ class AgeLimitSeeder extends Seeder
      */
     public function run()
     {
-        if(env('DB_CONNECTION') === 'mysql') {
-            DB::statement("ALTER TABLE age_limits AUTO_INCREMENT = 1;"); // reset auto increment to 1
-        } else if(env('DB_CONNECTION') === 'pgsql') {
-            DB::statement("ALTER SEQUENCE age_limits_id_seq RESTART WITH 1");
-        }
-        
-
+        $id = 0;
         $limits = [
             [0, 3],
             [3, 6],
@@ -34,10 +28,12 @@ class AgeLimitSeeder extends Seeder
 
         foreach($limits as $limit) {
             DB::table('age_limits')->insert([
-                'id' => NULL,
+                'id' => $id,
                 'lower_age_limit' => $limit[0],
                 'upper_age_limit' => $limit[1]
             ]);
+            
+            $id = $id + 1;
         }
     }
 }
