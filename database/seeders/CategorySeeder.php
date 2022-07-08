@@ -22,22 +22,20 @@ class CategorySeeder extends Seeder
             'First toys' => ['Bath toys', 'sandbox toys', 'cubes']
         ];
 
-        $id = 0;
-        $subId = 0;
+        $id = 1;
+        $subId = 1;
 
         foreach($categories as $category => $subCategories) {
             DB::table('categories')->insert([
                 'id' => $id,
                 'title' => $category
             ]);
-
-            $lastInsertedId = DB::getPdo()->lastInsertId();
             
             foreach($subCategories as $subCategory) {
                 DB::table('sub_categories')->insert([
                     'id' => $subId,
                     'title' => $subCategory,
-                    'Category_id' => $lastInsertedId
+                    'Category_id' => $id
                 ]);
 
                 $subId = $subId + 1;
