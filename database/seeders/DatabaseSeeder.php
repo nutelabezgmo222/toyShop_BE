@@ -26,15 +26,6 @@ class DatabaseSeeder extends Seeder
         DB::table('gender_categories')->delete();
         DB::table('users')->delete();
 
-        if(env('DB_CONNECTION') === 'mysql') {
-            $tables = DB::select('SHOW TABLES');
-            $tableProperty = 'Tables_in_'.env('DB_DATABASE');
-
-            foreach($tables as $table) {
-                DB::statement("ALTER TABLE ". $table->$tableProperty ." AUTO_INCREMENT = 1;"); // reset auto increment to 1
-            }
-        }
-
         $this->call([
             CountrySeeder::class,
             AgeLimitSeeder::class,
