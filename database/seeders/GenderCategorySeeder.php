@@ -16,12 +16,15 @@ class GenderCategorySeeder extends Seeder
     public function run()
     {
         $genders = ['boy', 'girl', 'unisex'];
+        $id = 1;
 
         foreach($genders as $gender) {
             DB::table('gender_categories')->insert([
-                'id' => NULL,
+                'id' => $id,
                 'title' => $gender
             ]);
+
+            $id = $id + 1;
         }
     }
 }

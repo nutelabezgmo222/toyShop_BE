@@ -14,14 +14,17 @@ class CountrySeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
+        $id = 1;
         $countries = ['Ukraine', 'USA', 'France', 'Germany', 'Italy'];
 
         foreach($countries as $country) {
             DB::table('countries')->insert([
-                'id' => NULL,
+                'id' => $id,
                 'title' => $country
             ]);
+
+            $id = $id + 1;
         }
     }
 }

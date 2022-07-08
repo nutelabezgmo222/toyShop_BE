@@ -22,6 +22,7 @@ class ToySeeder extends Seeder
         $genders = GenderCategory::all();
         $ageLimits = AgeLimit::all();
         $brands = Brand::all();
+        $id = 1;
 
         $toys = [
             ['Toy 1', 'description for toy 1', 123.45, ''],
@@ -33,17 +34,19 @@ class ToySeeder extends Seeder
 
         foreach($toys as $toy) {
             DB::table('toys')->insert([
-                'id' => NULL,
+                'id' => $id,
                 'title' => $toy[0],
                 'description' => $toy[1],
                 'price' => $toy[2],
-                'image' => $toy[3],
+                'image' => 'https://content.rozetka.com.ua/goods/images/big/227211839.jpg',
                 'GenderCategory_id' => $genders[rand(0, $genders->count() - 1)]->id,
                 'AgeLimit_id' => $ageLimits[rand(0, $ageLimits->count() - 1)]->id,
                 'Brand_id' => $brands[rand(0, $brands->count() - 1)]->id,
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s")
             ]);
+
+            $id = $id + 1;
         }
     }
 }

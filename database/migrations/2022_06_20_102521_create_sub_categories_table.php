@@ -20,7 +20,7 @@ return new class extends Migration
         });
         
         Schema::table('sub_categories', function($table) {
-            $table->foreign('Category_id')->references('id')->on('categories');
+            $table->foreign('Category_id')->references('id')->on('categories')->onDelete('cascade');;
         });
     }
 

@@ -7,13 +7,20 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
+
 class ToyApiController extends Controller
 {
-    public function _GET() {
-        $toys = Toy::with(['genderCategory', 'brand.country', 'ageLimit', 'subCategories'])->get();
+    public function _GET(Request $request) {
+        $toys = Toy::with(['genderCategory', 'brand.country', 'ageLimit', 'subCategories']);
+
+        if ($request->has('subCategoryId')) {
+            $toys->whereHas('subCategories', function($q) use ($request) {
+                $q->where('id', '=' , $request['subCategoryId']);
+            });
+        }
 
         return [
-            'list' => $toys
+            'list' => $toys->get()
         ];
     }
 
@@ -24,16 +31,27 @@ class ToyApiController extends Controller
         if($errors) {
           return response($errors, 422);
         }
+        $description = '';
+        $image = '';
 
-        return Toy::create([
+        if($request['description']) {
+            $description = $request['description'];
+        }
+        if($request['image']) {
+            $image = $request['image'];
+        }
+
+        $newToy = Toy::create([
             'title' => $request['title'],
-            'description' => $request['description'] || '',
-            'price' => $request['price'] || 0,
-            'image' => $request['image'] || '',
+            'description' => $description,
+            'price' => $request['price'],
+            'image' => $image,
             'Brand_id' => $request['brand_id'],
-            'Gender_id' => $request['gender_id'],
+            'GenderCategory_id' => $request['gender_id'],
             'AgeLimit_id' => $request['age_limit_id']
         ]);
+
+        return $this->findWith($newToy->id);
     }
 
     public function _PATCH($id, Request $request) {
@@ -71,5 +89,9 @@ class ToyApiController extends Controller
         ];
         
         return $this->validateRequest($request, $validationRules);
+    }
+
+    public function findWith($id) {
+        return Toy::with(['genderCategory', 'brand.country', 'ageLimit', 'subCategories'])->find($id);
     }
 }

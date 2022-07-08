@@ -16,6 +16,7 @@ class BrandSeeder extends Seeder
      */
     public function run()
     {
+        $id = 0;
         $countries = Country::all();
         $countriesLength = $countries->count();
 
@@ -29,11 +30,12 @@ class BrandSeeder extends Seeder
 
         foreach($brands as $brand) {
             DB::table('brands')->insert([
-                'id' => NULL,
+                'id' => $id,
                 'title' => $brand[0],
                 'description' => $brand[1],
                 'Country_id' => $countries[rand(0, $countriesLength - 1)]->id
             ]);
+            $id = $id + 1;
         }
     }
 }
