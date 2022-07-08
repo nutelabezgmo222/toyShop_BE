@@ -35,7 +35,7 @@ class Toy extends Model
     ];
 
     public function subCategories() {
-        return $this->belongsToMany(SubCategory::class, 'toy_subcategories', 'Toy_id', 'SubCategory_id');
+        return $this->belongsToMany(SubCategory::class, 'toy_subcategories', 'Toy_id', 'Subcategory_id');
     }
 
     public function genderCategory() {
