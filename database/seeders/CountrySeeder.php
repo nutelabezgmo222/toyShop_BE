@@ -26,5 +26,7 @@ class CountrySeeder extends Seeder
 
             $id = $id + 1;
         }
+
+        DB::statement('ALTER SEQUENCE countries_id_seq RESTART WITH ' .$id);
     }
 }

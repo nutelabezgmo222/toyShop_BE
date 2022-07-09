@@ -35,5 +35,7 @@ class AgeLimitSeeder extends Seeder
             
             $id = $id + 1;
         }
+
+        DB::statement('ALTER SEQUENCE age_limits_id_seq RESTART WITH ' .$id);
     }
 }
