@@ -43,6 +43,7 @@ class CategorySeeder extends Seeder
 
             $id = $id + 1;
         }
-        
+
+        DB::statement('ALTER SEQUENCE sub_categories_id_seq RESTART WITH ' .$id);
     }
 }

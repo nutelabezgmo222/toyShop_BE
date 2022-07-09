@@ -26,5 +26,7 @@ class GenderCategorySeeder extends Seeder
 
             $id = $id + 1;
         }
+
+        DB::statement('ALTER SEQUENCE gender_categories_id_seq RESTART WITH ' .$id);
     }
 }

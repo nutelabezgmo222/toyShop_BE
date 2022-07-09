@@ -34,5 +34,7 @@ class UserSeeder extends Seeder
             
             $id = $id + 1;
         }
+
+        DB::statement('ALTER SEQUENCE users_id_seq RESTART WITH ' .$id);
     }
 }

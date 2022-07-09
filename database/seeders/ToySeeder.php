@@ -48,5 +48,7 @@ class ToySeeder extends Seeder
 
             $id = $id + 1;
         }
+
+        DB::statement('ALTER SEQUENCE toys_id_seq RESTART WITH ' .$id);
     }
 }
