@@ -23,7 +23,7 @@ return new class extends Migration
             $table->date('registration_date');
             $table->dateTime('last_log_time');
             $table->tinyInteger('is_admin');
-            $table->rememberToken();
+            $table->string('remember_token', 100)->nullable();
         });
     }
 
