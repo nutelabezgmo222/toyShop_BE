@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
                 'phone_number' => intval('380' . rand(100000000, 999999999)),
                 'registration_date' => date("Y-m-d H:i:s"),
                 'last_log_time' => date("Y-m-d H:i:s"),
-                'is_admin' => 0
+                'is_admin' => 0,
             ]);
             
             $id = $id + 1;

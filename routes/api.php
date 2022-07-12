@@ -6,6 +6,8 @@ use App\Http\Controllers\ToyApiController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\SubInformationController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AdminController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -43,3 +45,10 @@ Route::post('/category', [CategoriesController::class, '_POST_category']);
 Route::post('/subcategory', [CategoriesController::class, '_POST_subcategory']);
 Route::delete('/category/{id}', [CategoriesController::class, '_DELETE_category']);
 Route::delete('/subcategory/{id}', [CategoriesController::class, '_DELETE_subcategory']);
+
+Route::get('/admin/users', [AdminController::class, '_GET']);
+
+Route::post('/login', [LoginController::class, '_POST_login']);
+Route::post('/tokenLogin', [LoginController::class, '_POST_tokenLogin']);
+Route::post('/registration', [LoginController::class, '_POST_registration']);
+Route::get('/logout', [LoginController::class, '_GET_logout']);
