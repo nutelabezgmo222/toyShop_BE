@@ -30,8 +30,34 @@ class LoginController extends Controller
         ];
     }
 
+    public function _POST_tokenLogin(Request $request) {
+        if(!$request['remember_token']) {
+            return response('Token is required', 422);
+        }
+
+        $user = User::where('remember_token', $request['remember_token'])->first();
+        
+        if(!$user) {
+            return response('User not found', 404);
+        }
+
+        return [
+            'user' => $user
+        ];
+    }
+
     public function _GET_logout(Request $request) {
-        //write here something
+        $token = $request->header('Authorization');
+        
+        if(!$token) {
+            return response('Token is required', 422);
+        }
+
+        $user = User::where('remember_token', $token)->first();
+        $user->remember_token = '';
+        $user->save();
+
+        return response('OK', 200);
     }
 
     public function _POST_registration(Request $request) {
@@ -49,7 +75,8 @@ class LoginController extends Controller
             'phone_number' => $request['phone_number'],
             'registration_date' => date("Y-m-d H:i:s"),
             'last_log_time' => date("Y-m-d H:i:s"),
-            'is_admin' => 0
+            'is_admin' => 0,
+            'remember_token' => Str::random(10)
         ]);
 
         $newUser = $newUser->fresh();

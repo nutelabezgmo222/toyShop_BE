@@ -49,5 +49,6 @@ Route::delete('/subcategory/{id}', [CategoriesController::class, '_DELETE_subcat
 Route::get('/admin/users', [AdminController::class, '_GET']);
 
 Route::post('/login', [LoginController::class, '_POST_login']);
+Route::post('/tokenLogin', [LoginController::class, '_POST_tokenLogin']);
 Route::post('/registration', [LoginController::class, '_POST_registration']);
 Route::get('/logout', [LoginController::class, '_GET_logout']);

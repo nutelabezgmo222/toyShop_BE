@@ -27,6 +27,7 @@ class User extends Authenticatable
         'registration_date',
         'last_log_time',
         'is_admin',
+        'remember_token'
     ];
 
     /**
