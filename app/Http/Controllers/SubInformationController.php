@@ -36,8 +36,18 @@ class SubInformationController extends Controller
         ];
     }
 
-    public function _GET_genders() {
+    public function _GET_genders(Request $request) {
         $items = GenderCategory::all();
+
+        if ($request->has('subCategoryId')) {
+            $items = GenderCategory::with('toys.subCategories');
+
+            $items->whereHas('toys.subCategories', function($q) use ($request) {
+                $q->where('id', '=' , $request['subCategoryId']);
+            });
+
+            $items->get();
+        }
 
         return [
             'list' => $items
