@@ -20,7 +20,7 @@ class ToyApiController extends Controller
         }
 
         return [
-            'list' => $toys->get()
+            'list' => $toys->orderByDesc('rating')->get()
         ];
     }
 
@@ -45,6 +45,7 @@ class ToyApiController extends Controller
             'title' => $request['title'],
             'description' => $description,
             'price' => $request['price'],
+            'rating' => 0,
             'image' => $image,
             'Brand_id' => $request['brand_id'],
             'GenderCategory_id' => $request['gender_id'],

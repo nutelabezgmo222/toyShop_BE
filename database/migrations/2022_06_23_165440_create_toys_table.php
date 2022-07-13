@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('description');
             $table->float('price');
             $table->text('image');
+            $table->tinyInteger('rating');
 
             $table->tinyInteger('GenderCategory_id')->unsigned();
             $table->tinyInteger('AgeLimit_id')->unsigned();

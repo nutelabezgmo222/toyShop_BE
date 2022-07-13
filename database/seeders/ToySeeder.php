@@ -38,6 +38,7 @@ class ToySeeder extends Seeder
                 'title' => $toy[0],
                 'description' => $toy[1],
                 'price' => $toy[2],
+                'rating' => rand(0, 5),
                 'image' => 'https://content.rozetka.com.ua/goods/images/big/227211839.jpg',
                 'GenderCategory_id' => $genders[rand(0, $genders->count() - 1)]->id,
                 'AgeLimit_id' => $ageLimits[rand(0, $ageLimits->count() - 1)]->id,
