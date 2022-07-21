@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class CountrySeeder extends Seeder
+class CitySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,14 +14,15 @@ class CountrySeeder extends Seeder
      * @return void
      */
     public function run()
-    {   
+    {
         $id = 1;
-        $countries = ['Ukraine'];
+        $cities = ['Kharkiv', 'Kyiv', 'Lviv', 'Vinitsya', 'Djitomir', 'Mukachevo', 'Beregovo', 'Uzhorod'];
 
-        foreach($countries as $country) {
-            DB::table('countries')->insert([
+        foreach($cities as $city) {
+            DB::table('cities')->insert([
                 'id' => $id,
-                'title' => $country
+                'title' => $city,
+                'Country_id' => 1
             ]);
 
             $id = $id + 1;

@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class CountrySeeder extends Seeder
+class OrderStatusSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,19 +14,19 @@ class CountrySeeder extends Seeder
      * @return void
      */
     public function run()
-    {   
+    {
+        $statuses = ['Waiting for approving', 'Approved', 'Closed'];
         $id = 1;
-        $countries = ['Ukraine'];
 
-        foreach($countries as $country) {
-            DB::table('countries')->insert([
+        foreach($statuses as $status) {
+            DB::table('order_statuses')->insert([
                 'id' => $id,
-                'title' => $country
+                'title' => $status,
             ]);
 
             $id = $id + 1;
         }
 
-        DB::statement('ALTER SEQUENCE countries_id_seq RESTART WITH ' .$id + 1);
+        DB::statement('ALTER SEQUENCE order_statuses_id_seq RESTART WITH ' .$id + 1);
     }
 }

@@ -11,10 +11,10 @@ use App\Models\GenderCategory;
 class SubInformationController extends Controller
 {
     public function _GET_countries() {
-        $items = Country::all();
+        $items = Country::with('cities');
 
         return [
-            'list' => $items
+            'list' => $items->get()
         ];
     }
 

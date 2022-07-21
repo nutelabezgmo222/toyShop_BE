@@ -20,6 +20,10 @@ class DatabaseSeeder extends Seeder
         DB::table('brands')->delete();
         DB::table('sub_categories')->delete();
         DB::table('categories')->delete();
+        DB::table('order_statuses')->delete();
+        DB::table('cities')->delete();
+        DB::table('postal_services')->delete();
+        DB::table('postals')->delete();
 
         DB::table('countries')->delete();
         DB::table('age_limits')->delete();
@@ -28,6 +32,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             CountrySeeder::class,
+            CitySeeder::class,
+            OrderStatusSeeder::class,
+            PostalSeeder::class,
+            PostalServiceSeeder::class,
             AgeLimitSeeder::class,
             GenderCategorySeeder::class,
             UserSeeder::class,

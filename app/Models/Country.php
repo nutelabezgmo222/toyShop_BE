@@ -13,4 +13,8 @@ class Country extends Model
     public function brands() {
         return $this->hasMany(Brand::class, 'Country_id');
     }
+
+    public function cities() {
+        return $this->hasMany(City::class, 'Country_id');
+    }
 }
