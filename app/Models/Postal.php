@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\PostalService;
 
-class Delivery extends Model
+class Postal extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'PostalService_id',
-        'City_id'
-    ];
-
     public $timestamps = false;
+
+    public function postalServices() {
+        return $this->hasMany(PostalService::class, 'Postal_id');
+    }
 }

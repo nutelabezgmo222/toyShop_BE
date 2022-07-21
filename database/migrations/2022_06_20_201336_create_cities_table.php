@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('postal_services', function (Blueprint $table) {
+        Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->string('title', 45);
-            $table->tinyInteger('Postal_id')->unsigned();
+            $table->tinyInteger('Country_id')->unsigned();
         });
 
-        Schema::table('postal_services', function($table) {
-            $table->foreign('Postal_id')->references('id')->on('postals');
+        Schema::table('cities', function($table) {
+            $table->foreign('Country_id')->references('id')->on('countries');
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('postal_services');
+        Schema::dropIfExists('cities');
     }
 };

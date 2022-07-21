@@ -5,14 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Delivery extends Model
+class OrderStatus extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'PostalService_id',
-        'City_id'
-    ];
 
     public $timestamps = false;
 }

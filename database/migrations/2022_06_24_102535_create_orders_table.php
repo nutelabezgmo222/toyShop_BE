@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->text('description');
             $table->dateTime('creation_date');
-            $table->dateTime('completition_date');
+            $table->dateTime('completition_date')->nullable();
             $table->BigInteger('Delivery_id')->unsigned();
             $table->BigInteger('User_id')->unsigned();
         });

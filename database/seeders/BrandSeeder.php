@@ -38,6 +38,6 @@ class BrandSeeder extends Seeder
             $id = $id + 1;
         }
 
-        DB::statement('ALTER SEQUENCE brands_id_seq RESTART WITH ' .$id);
+        DB::statement('ALTER SEQUENCE brands_id_seq RESTART WITH ' .$id + 1);
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\SubInformationController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OrderController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -52,3 +53,6 @@ Route::post('/login', [LoginController::class, '_POST_login']);
 Route::post('/tokenLogin', [LoginController::class, '_POST_tokenLogin']);
 Route::post('/registration', [LoginController::class, '_POST_registration']);
 Route::get('/logout', [LoginController::class, '_GET_logout']);
+
+Route::post('/create_order', [OrderController::class, '_POST']);
+Route::get('/postals', [OrderController::class, '_GET_postals']);

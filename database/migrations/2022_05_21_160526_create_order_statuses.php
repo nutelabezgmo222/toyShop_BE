@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('postal_services', function (Blueprint $table) {
+        Schema::create('order_statuses', function (Blueprint $table) {
             $table->id();
             $table->string('title', 45);
-            $table->tinyInteger('Postal_id')->unsigned();
-        });
-
-        Schema::table('postal_services', function($table) {
-            $table->foreign('Postal_id')->references('id')->on('postals');
         });
     }
 
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('postal_services');
+        Schema::dropIfExists('order_statuses');
     }
 };

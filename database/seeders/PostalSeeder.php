@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class CountrySeeder extends Seeder
+class PostalSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,19 +14,20 @@ class CountrySeeder extends Seeder
      * @return void
      */
     public function run()
-    {   
+    {
+        $postals = ['Nova poshta', 'Ukr poshta'];
         $id = 1;
-        $countries = ['Ukraine'];
 
-        foreach($countries as $country) {
-            DB::table('countries')->insert([
+        foreach($postals as $postal) {
+            DB::table('postals')->insert([
                 'id' => $id,
-                'title' => $country
+                'title' => $postal,
+                'Country_id' => 1
             ]);
 
             $id = $id + 1;
         }
 
-        DB::statement('ALTER SEQUENCE countries_id_seq RESTART WITH ' .$id + 1);
+        DB::statement('ALTER SEQUENCE postals_id_seq RESTART WITH ' .$id + 1);
     }
 }
