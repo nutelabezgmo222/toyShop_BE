@@ -28,6 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/toy/{id}', [ToyApiController::class, '_GET_toy_by_id']);
 Route::get('/toys', [ToyApiController::class, '_GET']);
 Route::post('/toys', [ToyApiController::class, '_POST']);
 Route::patch('/toys/{id}', [ToyApiController::class, '_PATCH']);

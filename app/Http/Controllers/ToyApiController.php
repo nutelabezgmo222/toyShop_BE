@@ -24,6 +24,12 @@ class ToyApiController extends Controller
         ];
     }
 
+    public function _GET_toy_by_id($id) {
+        $toy = Toy::with(['genderCategory', 'brand.country', 'ageLimit', 'subCategories'])->where('id', '=', $id)->first();
+
+        return [ 'data' => $toy ];
+    }
+
 
     public function _POST(Request $request) {
         $errors = $this->validateToy($request);
