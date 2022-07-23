@@ -19,6 +19,7 @@ class Toy extends Model
         'price',
         'image',
         'rating',
+        'number',
         'GenderCategory_id',
         'AgeLimit_id',
         'Brand_id'
