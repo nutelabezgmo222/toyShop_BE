@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\City;
+use App\Models\PostalService;
 
 class Delivery extends Model
 {
@@ -15,4 +17,11 @@ class Delivery extends Model
     ];
 
     public $timestamps = false;
+
+    public function city() {
+        return $this->belongsTo(City::class, 'City_id');
+    }
+    public function postalService() {
+        return $this->belongsTo(PostalService::class, 'PostalService_id');
+    }
 }

@@ -55,4 +55,8 @@ Route::post('/registration', [LoginController::class, '_POST_registration']);
 Route::get('/logout', [LoginController::class, '_GET_logout']);
 
 Route::post('/create_order', [OrderController::class, '_POST']);
+Route::get('/my_orders', [OrderController::class, '_GET_my_orders']);
 Route::get('/postals', [OrderController::class, '_GET_postals']);
+
+Route::get('/admin/all_orders', [OrderController::class, '_GET_all_orders']);
+Route::post('/admin/change_order_status', [OrderController::class, '_POST_change_status']);

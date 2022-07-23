@@ -21,6 +21,7 @@ return new class extends Migration
             $table->float('price');
             $table->text('image');
             $table->tinyInteger('rating');
+            $table->tinyInteger('number');
 
             $table->tinyInteger('GenderCategory_id')->unsigned();
             $table->tinyInteger('AgeLimit_id')->unsigned();

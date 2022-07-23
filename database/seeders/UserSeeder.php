@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
 
         for($i = 0; $i < $usersToCreate; $i++) {
             DB::table('users')->insert([
+                'id' => $id,
                 'name' => Str::random(10),
                 'surname' => Str::random(10),
                 'email' => Str::random(10).'@gmail.com',
@@ -34,6 +35,20 @@ class UserSeeder extends Seeder
             
             $id = $id + 1;
         }
+
+        DB::table('users')->insert([
+            'id' => $id,
+            'name' => 'Maxim',
+            'surname' => 'Solod',
+            'email' => 'test@i.ua',
+            'password' => '12332111',
+            'phone_number' => intval('380' . rand(100000000, 999999999)),
+            'registration_date' => date("Y-m-d H:i:s"),
+            'last_log_time' => date("Y-m-d H:i:s"),
+            'is_admin' => 1,
+        ]);
+
+        $id = $id + 1;
 
         DB::statement('ALTER SEQUENCE users_id_seq RESTART WITH ' .$id + 1);
     }
