@@ -19,11 +19,13 @@ return new class extends Migration
             $table->dateTime('creation_date');
             $table->dateTime('completition_date')->nullable();
             $table->BigInteger('Delivery_id')->unsigned();
+            $table->BigInteger('OrderStatus_id')->unsigned();
             $table->BigInteger('User_id')->unsigned();
         });
 
         Schema::table('orders', function($table) {
             $table->foreign('Delivery_id')->references('id')->on('deliveries');
+            $table->foreign('OrderStatus_id')->references('id')->on('order_statuses');
             $table->foreign('User_id')->references('id')->on('users');
         });
     }

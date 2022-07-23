@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //tables with references
+        DB::table('toy_subcategories')->delete();
         DB::table('toys')->delete();
         DB::table('brands')->delete();
         DB::table('sub_categories')->delete();
@@ -42,7 +43,8 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
 
             BrandSeeder::class,
-            ToySeeder::class
+            ToySeeder::class,
+            ToySubcategorySeeder::class
         ]);
     }
 }

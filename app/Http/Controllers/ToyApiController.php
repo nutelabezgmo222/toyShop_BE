@@ -46,6 +46,7 @@ class ToyApiController extends Controller
             'description' => $description,
             'price' => $request['price'],
             'rating' => 0,
+            'number' => $request['number'],
             'image' => $image,
             'Brand_id' => $request['brand_id'],
             'GenderCategory_id' => $request['gender_id'],
