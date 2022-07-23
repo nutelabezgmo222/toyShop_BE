@@ -33,8 +33,9 @@ class OrderController extends Controller
             return response('You don`t have rights to see this', 403);
         }
 
-        $userOrders = Order::with(['user', 'status', 'toyOrders', 'delivery.city', 'delivery.postalService.postal'])->get();
-        
+        $userOrders = Order::with(['user', 'status', 'toyOrders', 'delivery.city', 'delivery.postalService.postal'])
+            ->orderBy('OrderStatus_id')
+            ->get();
 
         return [
             'list' => $userOrders
@@ -52,7 +53,10 @@ class OrderController extends Controller
             return response('User not found', 404);
         }
 
-        $userOrders = Order::with(['status', 'toyOrders', 'delivery.city', 'delivery.postalService.postal'])->where('User_id', '=', $user->id)->get();
+        $userOrders = Order::with(['status', 'toyOrders', 'delivery.city', 'delivery.postalService.postal'])
+            ->where('User_id', '=', $user->id)
+            ->orderBy('OrderStatus_id')
+            ->get();
         
 
         return [
