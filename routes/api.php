@@ -39,6 +39,7 @@ Route::post('/brands', [BrandController::class, '_POST']);
 Route::delete('/brands/{id}', [BrandController::class, '_DELETE']);
 
 Route::get('/countries', [SubInformationController::class, '_GET_countries']);
+Route::get('/recommendations', [SubInformationController::class, '_GET_recommendations']);
 Route::get('/genders', [SubInformationController::class, '_GET_genders']);
 Route::get('/age_limits', [SubInformationController::class, '_GET_age_limits']);
 
